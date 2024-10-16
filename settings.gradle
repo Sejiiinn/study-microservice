@@ -1,1 +1,2 @@
 rootProject.name = 'microservice'
+include 'item-service'
