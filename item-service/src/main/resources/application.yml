@@ -6,3 +6,18 @@ logging:
   level:
     root: info
     org.msa.item: debug
+
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/msa
+    username: user
+    password: 1234
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    hibernate:
+      ddl-auto: create # 스키마 자동 생성
+    show-sql: true # 쿼리를 콘솔에 출력
+    properties:
+      hibernate:
+        format_sql: true # 출력되는 쿼리문을 보기 좋게 포매팅 함
