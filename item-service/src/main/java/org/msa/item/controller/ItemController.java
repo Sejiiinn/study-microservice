@@ -2,6 +2,7 @@ package org.msa.item.controller;
 
 import org.msa.item.dto.ItemDTO;
 import org.msa.item.dto.ResponseDTO;
+import org.msa.item.exception.ApiException;
 import org.msa.item.service.ItemService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,9 +23,15 @@ public class ItemController {
 	private final ItemService itemService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseEntity<ResponseDTO> add(@Valid @RequestBody ItemDTO itemDTO) {
+	public ResponseEntity<ResponseDTO> add(@Valid @RequestBody ItemDTO itemDTO) throws Exception {
 		ResponseDTO.ResponseDTOBuilder responseDTOBuilder = ResponseDTO.builder();
 		itemService.insertItem(itemDTO);
+
+		try {
+			Integer.parseInt("test");
+		} catch (Exception e) {
+			throw new ApiException("test 에러");
+		}
 
 		log.debug("request add item id = {}", itemDTO.getId());
 
